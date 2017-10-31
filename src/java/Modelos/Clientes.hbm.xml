@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-oct-2017 20:00:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Clientes" table="clientes" catalog="proyectos_carvajal" optimistic-lock="version">
+        <id name="idCliente" type="java.lang.Integer">
+            <column name="id_cliente" />
+            <generator class="identity" />
+        </id>
+        <property name="razonSocial" type="string">
+            <column name="razon_social" length="50" not-null="true" />
+        </property>
+        <property name="nit" type="string">
+            <column name="nit" length="10" not-null="true">
+                <comment>N&#250;mero de Identificaci&#243;n Tributaria sin digito de verificaci&#243;n</comment>
+            </column>
+        </property>
+        <property name="ciudad" type="string">
+            <column name="ciudad" length="50" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="100" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="20" not-null="true" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" length="65535" not-null="true" />
+        </property>
+        <set name="cotizacioneses" table="cotizaciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cliente" not-null="true">
+                    <comment>Cliente para quien va dirigida la cotizaci&#243;n.</comment>
+                </column>
+            </key>
+            <one-to-many class="Modelos.Cotizaciones" />
+        </set>
+    </class>
+</hibernate-mapping>

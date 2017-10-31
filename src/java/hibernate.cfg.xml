@@ -7,5 +7,10 @@
     <property name="hibernate.connection.url">jdbc:mysql://172.17.0.168:3306/proyectos_carvajal</property>
     <property name="hibernate.connection.username">carvajal_project</property>
     <property name="hibernate.connection.password">QzrArYUsEp4%5d+f</property>
+    <mapping resource="Modelos/Clientes.hbm.xml"/>
+    <mapping resource="Modelos/Productos.hbm.xml"/>
+    <mapping resource="Modelos/Empleados.hbm.xml"/>
+    <mapping resource="Modelos/Cotizaciones.hbm.xml"/>
+    <mapping resource="Modelos/ProductosCotizaciones.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

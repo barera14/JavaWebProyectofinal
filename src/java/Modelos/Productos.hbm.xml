@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-oct-2017 20:00:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Productos" table="productos" catalog="proyectos_carvajal" optimistic-lock="version">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="id_producto" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="150" not-null="true" />
+        </property>
+        <property name="valor" type="int">
+            <column name="valor" not-null="true" />
+        </property>
+        <set name="productosCotizacioneses" table="productos_cotizaciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producto" not-null="true">
+                    <comment>Producto que se incluye en la cotizaci&#243;n</comment>
+                </column>
+            </key>
+            <one-to-many class="Modelos.ProductosCotizaciones" />
+        </set>
+    </class>
+</hibernate-mapping>
