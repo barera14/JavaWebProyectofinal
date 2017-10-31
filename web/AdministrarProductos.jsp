@@ -1,8 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="Modelos.Clientes"%>
+
+<%@page import="Modelos.Productos"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="Head.jsp" />
+   <jsp:include page="Head.jsp" />
 <jsp:include page="menu.jsp"/>  
 
 
@@ -60,36 +61,32 @@
                       <thead>
                         <tr>
                           
-                          <th>Razon Social</th>
-                          <th>Nit</th>
-                          <th>Ciudad</th>
-                          <th>Direccion</th>
-                          <th>Telefono</th>
+                          <th>Nombres</th>
+                          <th>Descripcion</th>
+                          <th>Valor</th>
                           <th>Acciones</th>
                           
                         </tr>
                       </thead>
                       <tbody>
-                
-                      <% Clientes usu=(Clientes) request.getAttribute("usuario"); %>
-                      <c:forEach var="cli" items="${requestScope.ArrayCliente}">
+<% Productos prod = (Productos)request.getAttribute("listaProducto");%>
+                     
+            <tr>
+
+                <td> <%= prod.getNombre() %></td>
+                <td> <%= prod.getDescripcion()%></td>
+                <td> <%= prod.getValor() %></td>
                           
-                           <tr>
-                <td> <c:out value="${cli.razonSocial}"/></td>
-                <td> <c:out value="${cli.nit}"/></td>
-                <td> <c:out value="${cli.ciudad}"/></td>
-                <td> <c:out value="${cli.direccion}"/></td>
-                <td> <c:out value="${cli.telefono}"/></td>
-                
-                
+
                 <td> 
-                    <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='ClientesController?action=update&id=${cli.idCliente}'"><i class="icon-pencil"></i> </button>
-                    <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='ClientesController?action=delete&id=${cli.idCliente}'"><i class="icon-remove"></i></button>
-                </td>
+                    <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='EmpleadosController?action=update&id=<%= prod.getIdProducto()%>'"><i class="icon-pencil"></i> </button>
+                    <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='EmpleadosController?action=delete&id=<%= prod.getIdProducto()%>'"><i class="icon-remove"></i></button>
+                </td>emp
                 
                 
             </tr>
-                      </c:forEach>
+    
+
                       </tbody>
                     </table>
 

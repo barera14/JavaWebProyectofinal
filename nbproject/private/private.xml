@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alejandro%20Bernal/Documents/NetBeansProjects/JavaWebProyectofinal/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Alejandro%20Bernal/Documents/NetBeansProjects/JavaWebProyectofinal/src/java/Modelos/Clientes.java</file>
+            <file>file:/C:/Users/Alejandro%20Bernal/Documents/NetBeansProjects/JavaWebProyectofinal/src/java/Controlador/ClientesController.java</file>
+            <file>file:/C:/Users/Alejandro%20Bernal/Documents/NetBeansProjects/JavaWebProyectofinal/web/AdministrarClientes.jsp</file>
+            <file>file:/C:/Users/Alejandro%20Bernal/Documents/NetBeansProjects/JavaWebProyectofinal/src/java/Controlador/EmpleadosController.java</file>
+            <file>file:/C:/Users/Alejandro%20Bernal/Documents/NetBeansProjects/JavaWebProyectofinal/web/AdministarEmpleado.jsp</file>
         </group>
     </open-files>
 </project-private>

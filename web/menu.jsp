@@ -28,8 +28,8 @@
               </a>
 
               <ul>
-                <li><a href="_form.html">Registrar </a></li>
-                <li><a href="../UsuariosC?action=admin">Listar </a></li>
+                <li><a href="CreateCliente.jsp">Registrar </a></li>
+                <li><a href="ClientesController?action=admin">Listar </a></li>
               </ul>
             </li>
             <!-- Usuario -->
@@ -43,8 +43,8 @@
               </a>
 
               <ul>
-                <li><a href="_form.html">Registrar </a></li>
-                <li><a href="SalonesC?action=admin">Listar </a></li>
+                <li><a href="CreateProducto.jsp">Registrar </a></li>
+                <li><a href="ProductoController?action=admin">Listar </a></li>
               </ul>
             </li>
               <!-- Salones -->
@@ -58,8 +58,8 @@
               </a>
 
               <ul>
-                <li><a href="widgets1.html">Registrar </a></li>
-                <li><a href="widgets2.html">Listar </a></li>
+                <li><a href="CreateEmpleados.jsp">Registrar </a></li>
+                <li><a href="EmpleadosController?action=admin">Listar </a></li>
               </ul>
             </li>
               <!-- Profesores -->

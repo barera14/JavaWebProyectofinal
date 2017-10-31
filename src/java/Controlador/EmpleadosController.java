@@ -91,8 +91,8 @@ public class EmpleadosController extends HttpServlet {
             ArrayList<Empleados> sal = new ArrayList<Empleados>();
             
             for(Object Salone: emp){
-             Empleados salon = (Empleados) Salone;
-             sal.add(salon);
+             Empleados objemp = (Empleados) Salone;
+             sal.add(objemp);
              
             }
             

@@ -1,5 +1,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%@page import="Modelos.Empleados"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
    <jsp:include page="Head.jsp" />
 <jsp:include page="menu.jsp"/>  
 
@@ -69,25 +72,20 @@
                       </thead>
                       <tbody>
 
-                      <c:forEach var="emp" items="${listaEmpleados}">
+                      <c:forEach var="emp" items="${requestScope.listaEmpleados}">
             <tr>
-<<<<<<< HEAD
+
                 <td> <c:out value="${emp.nombres}"/></td>
                 <td> <c:out value="${emp.apellidos}"/></td>
                 <td> <c:out value="${emp.documento}"/></td>
                 <td> <c:out value="${emp.correo}"/></td>
                 <td><span class="label label-success"><c:out value="${emp.perfil}"/></span></td>
-=======
-                <td> <c:out value="${usua.usuario}"/></td>
-                <td> <c:out value="${usua.perfil}"/></td>
-                
-                          <td><span class="label label-success"><c:out value="${usua.estado}"/></span></td>
                           
->>>>>>> f38cedee2932833b5acf784f0642087111890d46
+
                 <td> 
                     <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='EmpleadosController?action=update&id=${emp.idEmpleado}'"><i class="icon-pencil"></i> </button>
                     <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='EmpleadosController?action=delete&id=${emp.idEmpleado}'"><i class="icon-remove"></i></button>
-                </td>
+                </td>emp
                 
                 
             </tr>

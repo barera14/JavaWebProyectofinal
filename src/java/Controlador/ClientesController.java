@@ -49,7 +49,7 @@ public class ClientesController extends HttpServlet {
         
     }
     }
- private void registrar(HttpServletRequest request, HttpServletResponse response){
+ private void registrar(HttpServletRequest request, HttpServletResponse response) throws IOException{
                String nombre=request.getParameter("razon_social");
           String apellido=request.getParameter("nit");
           String documento=request.getParameter("ciudad");
@@ -58,9 +58,7 @@ public class ClientesController extends HttpServlet {
           String passSIn=request.getParameter("password");
           String encriptMD5=DigestUtils.md5Hex(passSIn);
           System.out.println("incriptado"+encriptMD5);
-         
-          
-          
+  
             //Creamos objeto con datos de formulario
             Clientes salon= new Clientes(nombre,apellido, documento,correo,perfil,encriptMD5);
             //guardamos objeto en BD
@@ -68,15 +66,15 @@ public class ClientesController extends HttpServlet {
             session.beginTransaction();
             session.save(salon);
             session.getTransaction().commit();
-            session.close();
+            session.close();           
     
         try {
-            response.sendRedirect("EmpleadosController?action=admin");
+            response.sendRedirect("ClientesController?action=admin");
         } catch (IOException ex) {
             Logger.getLogger(EmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
  }
-    private void Admin(HttpServletRequest request, HttpServletResponse response) {
+    private void Admin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Session sesion = HibernateUtil.getSessionFactory().openSession();
         Query q = sesion.createQuery("FROM Clientes");
@@ -93,7 +91,8 @@ public class ClientesController extends HttpServlet {
         }
 
         request.setAttribute("ArrayCliente", cli);
-
+        
+        
         try {
             request.getRequestDispatcher("AdministrarClientes.jsp").forward(request, response);//Redirecionar
         } catch (ServletException ex) {
@@ -129,7 +128,7 @@ public class ClientesController extends HttpServlet {
             sesion.getTransaction().commit();
 
             try {
-                response.sendRedirect("SalonesController?action=admin");
+                response.sendRedirect("ClientesController?action=admin");
             } catch (IOException ex) {
                 Logger.getLogger(ClientesController.class.getName()).log(Level.SEVERE, null, ex);
             }
