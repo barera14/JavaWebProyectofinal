@@ -65,7 +65,7 @@ public class ClientesController extends HttpServlet {
           String passSIn=request.getParameter("password");
           String encriptMD5=DigestUtils.md5Hex(passSIn);
           System.out.println("incriptado"+encriptMD5);
-  
+  //ok
             //Creamos objeto con datos de formulario
             Clientes salon= new Clientes(nombre,apellido, documento,correo,perfil,encriptMD5);
             //guardamos objeto en BD
