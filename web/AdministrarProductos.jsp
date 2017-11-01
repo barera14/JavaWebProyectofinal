@@ -69,6 +69,7 @@
                         </tr>
                       </thead>
                       <tbody>
+<<<<<<< HEAD
 
             <c:forEach var="emp" items="${requestScope.listaProducto}">          
             <tr>
@@ -87,6 +88,26 @@
             </tr>
      </c:forEach>
 
+=======
+<c:forEach var="prod" items="${requestScope.listaProducto}">
+                     
+            <tr>
+
+                <td> <c:out value="${prod.nombre}"/></td>
+                <td> <c:out value="${prod.descripcion}"/></td>
+                <td> <c:out value="${prod.valor}"/></td>
+                          
+
+                <td> 
+                    <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='EmpleadosController?action=update&id=${prod.idProducto}'"><i class="icon-pencil"></i> </button>
+                    <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='EmpleadosController?action=delete&id=${prod.idProducto}'"><i class="icon-remove"></i></button>
+                </td>emp
+                
+                
+            </tr>
+    
+ </c:forEach>
+>>>>>>> 5d3abd86c32a14aacce74f6f0392a286e903036f
                       </tbody>
                     </table>
 

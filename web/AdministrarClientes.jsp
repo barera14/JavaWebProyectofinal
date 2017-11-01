@@ -71,7 +71,7 @@
                       </thead>
                       <tbody>
                 
-                      <% Clientes usu=(Clientes) request.getAttribute("usuario"); %>
+                     
                       <c:forEach var="cli" items="${requestScope.ArrayCliente}">
                           
                            <tr>

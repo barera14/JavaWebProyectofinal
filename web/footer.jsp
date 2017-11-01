@@ -27,7 +27,13 @@
 <script src="js/charts.js"></script> <!-- Custom chart codes -->
 
 <!-- Script for this page -->
+<script>
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
+</script>
 <script type="text/javascript">
+    
 $(function () {
 
     /* Bar Chart starts */

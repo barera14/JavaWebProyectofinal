@@ -57,6 +57,7 @@ public class ProductoController extends HttpServlet {
 
         }
     }
+<<<<<<< HEAD
 
     private void registrar(HttpServletRequest request, HttpServletResponse response) {
         String nombre = request.getParameter("nombre");
@@ -72,6 +73,26 @@ public class ProductoController extends HttpServlet {
         session.getTransaction().commit();
         session.close();
 
+=======
+   private void registrar(HttpServletRequest request, HttpServletResponse response){
+        response.setContentType("text/html;charset=UTF-8");        
+       String nombre=request.getParameter("nombre");
+          String descripcion=request.getParameter("descripcion");
+          int valor=Integer.parseInt(request.getParameter("valor"));
+         
+        
+          
+            //Creamos objeto con datos de formulario
+            Productos produ= new Productos(nombre,descripcion, valor);
+            //guardamos objeto en BD
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            session.save(produ);
+            session.getTransaction().commit();
+            session.close();
+    
+     
+>>>>>>> 5d3abd86c32a14aacce74f6f0392a286e903036f
         try {
             response.sendRedirect("ProductoController?action=admin");
         } catch (IOException ex) {

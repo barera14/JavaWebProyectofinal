@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.digest.DigestUtils;
 import Controlador.HibernateUtil;
+import Modelos.Clientes;
 import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.Query;
@@ -46,10 +47,32 @@ public class EmpleadosController extends HttpServlet {
         case "admin":
             administrar(request, response);
             break;
+        case "delete":
+            eliminar(request, response);
+            break;
+        
         
     }
     }
+
+private void eliminar(HttpServletRequest request, HttpServletResponse response) {
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Empleados empleado = (Empleados) sesion.get(Empleados.class, Integer.parseInt(request.getParameter("id")));
+
+        sesion.beginTransaction();
+        sesion.delete(empleado);
+        sesion.getTransaction().commit();
+        sesion.close();
+
+        try {
+            response.sendRedirect("EmpleadosController?action=admin");
+        } catch (IOException ex) {
+            Logger.getLogger(ClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
+    
    private void registrar(HttpServletRequest request, HttpServletResponse response){
+        response.setContentType("text/html;charset=UTF-8");
                String nombre=request.getParameter("nombres");
           String apellido=request.getParameter("apellidos");
           String documento=request.getParameter("documento");
