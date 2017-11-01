@@ -69,23 +69,23 @@
                         </tr>
                       </thead>
                       <tbody>
-<% Productos prod = (Productos)request.getAttribute("listaProducto");%>
-                     
+
+            <c:forEach var="emp" items="${requestScope.listaProducto}">          
             <tr>
 
-                <td> <%= prod.getNombre() %></td>
-                <td> <%= prod.getDescripcion()%></td>
-                <td> <%= prod.getValor() %></td>
+                <td><c:out value="${emp.nombre}"/></td>
+                <td> <c:out value="${emp.descripcion}"/></td>
+                <td> <c:out value="${emp.valor}"/></td>
                           
 
                 <td> 
-                    <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='EmpleadosController?action=update&id=<%= prod.getIdProducto()%>'"><i class="icon-pencil"></i> </button>
-                    <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='EmpleadosController?action=delete&id=<%= prod.getIdProducto()%>'"><i class="icon-remove"></i></button>
-                </td>emp
+                    <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='ProductoController?action=update&id=<c:out value="${emp.idProducto}"/>'"><i class="icon-pencil"></i> </button>
+                    <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='ProductoController?action=delete&id=<c:out value="${emp.idProducto}"/>'"><i class="icon-remove"></i></button>
+                </td>
                 
                 
             </tr>
-    
+     </c:forEach>
 
                       </tbody>
                     </table>

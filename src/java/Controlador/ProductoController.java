@@ -38,71 +38,74 @@ public class ProductoController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-             String action = request.getParameter("action");
-    
-    switch(action){
-        case "create":
-            registrar(request,response);
-            break;
-        case "admin":
-            administrar(request, response);
-            break;
-        
+        String action = request.getParameter("action");
+
+        switch (action) {
+            case "create":
+                registrar(request, response);
+                break;
+            case "admin":
+                administrar(request, response);
+                break;
+
+            case "delete":
+                eliminar(request, response);
+                break;
+            case "update":
+                actualizar(request, response);
+                break;
+
+        }
     }
-    }
-   private void registrar(HttpServletRequest request, HttpServletResponse response){
-               String nombre=request.getParameter("nombre");
-          String descripcion=request.getParameter("descripcion");
-          int valor=Integer.parseInt(request.getParameter("valor"));
-         
-        
-          
-            //Creamos objeto con datos de formulario
-            Productos produ= new Productos(nombre,descripcion, valor);
-            //guardamos objeto en BD
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            session.save(produ);
-            session.getTransaction().commit();
-            session.close();
-    
-     
+
+    private void registrar(HttpServletRequest request, HttpServletResponse response) {
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        int valor = Integer.parseInt(request.getParameter("valor"));
+
+        //Creamos objeto con datos de formulario
+        Productos produ = new Productos(nombre, descripcion, valor);
+        //guardamos objeto en BD
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(produ);
+        session.getTransaction().commit();
+        session.close();
+
         try {
             response.sendRedirect("ProductoController?action=admin");
         } catch (IOException ex) {
             Logger.getLogger(EmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-            
-            
-            
- }
-    private void administrar(HttpServletRequest request, HttpServletResponse response){
-        
-            Session sesion = HibernateUtil.getSessionFactory().openSession();
-            
-            Query q =(Query) sesion.createQuery("FROM Productos");
-            ArrayList emp =(ArrayList) q.list();
-            sesion.close();
-            
-            ArrayList<Productos> pro = new ArrayList<Productos>();
-            
-            for(Object Salone: emp){
-             Productos objemp = (Productos) Salone;
-             pro.add(objemp);
-             
-            }
-            
-            request.setAttribute("listaProducto", emp);
-            
-       try {     
+
+    }
+
+    private void administrar(HttpServletRequest request, HttpServletResponse response) {
+
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+
+        Query q = (Query) sesion.createQuery("FROM Productos");
+        ArrayList emp = (ArrayList) q.list();
+        sesion.close();
+
+        ArrayList<Productos> pro = new ArrayList<Productos>();
+
+        for (Object Salone : emp) {
+            Productos objemp = (Productos) Salone;
+            pro.add(objemp);
+
+        }
+
+        request.setAttribute("listaProducto", emp);
+
+        try {
             request.getRequestDispatcher("AdministrarProductos.jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(EmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(EmpleadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -144,4 +147,57 @@ public class ProductoController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private void eliminar(HttpServletRequest request, HttpServletResponse response) {
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Productos producto = (Productos) sesion.get(Productos.class, Integer.parseInt(request.getParameter("id")));
+
+        sesion.beginTransaction();
+        sesion.delete(producto);
+        sesion.getTransaction().commit();
+        sesion.close();
+
+        try {
+            response.sendRedirect("ProductoController?action=admin");
+        } catch (IOException ex) {
+            Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void actualizar(HttpServletRequest request, HttpServletResponse response) {
+        Session sesion = HibernateUtil.getSessionFactory().openSession();
+        Productos producto = (Productos) sesion.get(Productos.class, Integer.parseInt(request.getParameter("id")));
+
+        if (request.getMethod().equalsIgnoreCase("GET")) {
+            request.setAttribute("producto", producto);
+           
+            try {
+                request.getRequestDispatcher("UpdateProductos.jsp").forward(request, response);//Redirecionar
+            } catch (ServletException ex) {
+                Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
+        } else {
+            producto.setNombre(request.getParameter("nombre"));
+            producto.setDescripcion(request.getParameter("descripcion"));
+            producto.setValor(Integer.parseInt(request.getParameter("valor")));
+
+            sesion.beginTransaction();
+            sesion.saveOrUpdate(producto);
+            sesion.getTransaction().commit();
+
+            
+            try {
+                response.sendRedirect("ProductoController?action=admin");
+            } catch (IOException ex) {
+                Logger.getLogger(ProductoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+
+    }
 }
+
+
