@@ -46,11 +46,18 @@ public class ClientesController extends HttpServlet {
         case "admin":
             Admin(request, response);
             break;
+              case "delete":
+            eliminar(request, response);
+            break;
+         case "update":
+            actualizar(request, response);
+            break;
         
     }
     }
  private void registrar(HttpServletRequest request, HttpServletResponse response) throws IOException{
-               String nombre=request.getParameter("razon_social");
+      response.setContentType("text/html;charset=UTF-8");          
+     String nombre=request.getParameter("razon_social");
           String apellido=request.getParameter("nit");
           String documento=request.getParameter("ciudad");
           String correo=request.getParameter("direccion");
@@ -117,11 +124,13 @@ public class ClientesController extends HttpServlet {
                 Logger.getLogger(ClientesController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
+             response.setContentType("text/html;charset=UTF-8");
             cliente.setRazonSocial(request.getParameter("razon_social"));
             cliente.setNit(request.getParameter("nit"));
             cliente.setCiudad(request.getParameter("ciudad"));
             cliente.setDireccion(request.getParameter("direccion"));
             cliente.setTelefono(request.getParameter("telefono"));
+            cliente.setContrasena(request.getParameter("password"));
 
             sesion.beginTransaction();
             sesion.saveOrUpdate(cliente);

@@ -69,24 +69,24 @@
                         </tr>
                       </thead>
                       <tbody>
-<% Productos prod = (Productos)request.getAttribute("listaProducto");%>
+<c:forEach var="prod" items="${requestScope.listaProducto}">
                      
             <tr>
 
-                <td> <%= prod.getNombre() %></td>
-                <td> <%= prod.getDescripcion()%></td>
-                <td> <%= prod.getValor() %></td>
+                <td> <c:out value="${prod.nombre}"/></td>
+                <td> <c:out value="${prod.descripcion}"/></td>
+                <td> <c:out value="${prod.valor}"/></td>
                           
 
                 <td> 
-                    <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='EmpleadosController?action=update&id=<%= prod.getIdProducto()%>'"><i class="icon-pencil"></i> </button>
-                    <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='EmpleadosController?action=delete&id=<%= prod.getIdProducto()%>'"><i class="icon-remove"></i></button>
+                    <button class="btn btn-sm btn-success" type="button" title="Editar"  onclick="location.href='EmpleadosController?action=update&id=${prod.idProducto}'"><i class="icon-pencil"></i> </button>
+                    <button class="btn btn-sm btn-danger" type="button" title="Eliminar"  onclick="location.href='EmpleadosController?action=delete&id=${prod.idProducto}'"><i class="icon-remove"></i></button>
                 </td>emp
                 
                 
             </tr>
     
-
+ </c:forEach>
                       </tbody>
                     </table>
 

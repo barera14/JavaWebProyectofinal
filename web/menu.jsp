@@ -74,7 +74,7 @@
               </a>
 
               <ul>
-                <li><a href="widgets1.html">Registrar </a></li>
+                <li><a href="CotizacionesController?action=select">Registrar </a></li>
                 <li><a href="widgets2.html">Listar </a></li>
               </ul>
             </li>

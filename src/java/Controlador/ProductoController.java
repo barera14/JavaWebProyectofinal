@@ -51,7 +51,8 @@ public class ProductoController extends HttpServlet {
     }
     }
    private void registrar(HttpServletRequest request, HttpServletResponse response){
-               String nombre=request.getParameter("nombre");
+        response.setContentType("text/html;charset=UTF-8");        
+       String nombre=request.getParameter("nombre");
           String descripcion=request.getParameter("descripcion");
           int valor=Integer.parseInt(request.getParameter("valor"));
          
